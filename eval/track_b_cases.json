@@ -1,0 +1,149 @@
+[
+  {
+    "name": "bayes medical test",
+    "learning_objective": "Teach Bayes theorem for medical test interpretation.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Bayes medical testing note",
+        "text": "Bayes theorem connects base rate, sensitivity, specificity, and posterior probability. In medical testing, sensitivity is the true positive rate and specificity is the true negative rate. A positive test result can still have low posterior probability when the disease base rate is low because false positives dominate."
+      }
+    ],
+    "expected_concepts": ["bayes theorem", "base rate", "sensitivity", "specificity", "posterior probability"],
+    "case_fragments": ["p(disease | positive)", "base-rate trap", "sensitivity"],
+    "forbidden_concepts": ["theorem medical", "sensitivity true", "specificity true"]
+  },
+  {
+    "name": "convex lens ray optics",
+    "learning_objective": "Understand convex lens image formation with ray diagrams and solve CBSE/JEE lens formula questions.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Convex lens ray notes",
+        "text": "For a convex lens, draw the principal axis, optical center, focal points F1 and F2, and 2F marks. A ray parallel to the principal axis passes through focus after refraction. A ray through the optical center goes straight. The lens formula is 1/f = 1/v - 1/u and magnification is v/u."
+      }
+    ],
+    "expected_concepts": ["convex lens", "principal axis", "focal point", "optical center", "lens formula"],
+    "case_fragments": ["ray diagram", "lens formula", "magnification"],
+    "forbidden_concepts": ["formula convex", "lens ray"]
+  },
+  {
+    "name": "galvanic cell nernst",
+    "learning_objective": "Understand galvanic cells, electrode potential, and the Nernst equation for CBSE/JEE electrochemistry.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Electrochemistry note",
+        "text": "A galvanic cell converts chemical energy into electrical energy. Oxidation happens at the anode and reduction happens at the cathode. Electrons flow from anode to cathode through the wire while the salt bridge maintains charge balance. Cell potential is Ecell = Ecathode - Eanode. The Nernst equation adjusts Ecell using the reaction quotient."
+      }
+    ],
+    "expected_concepts": ["galvanic cell", "anode", "cathode", "salt bridge", "nernst equation"],
+    "case_fragments": ["anode", "cathode", "nernst"],
+    "forbidden_concepts": ["chemical energy electrical", "wire salt"]
+  },
+  {
+    "name": "url metadata honesty",
+    "learning_objective": "Understand Bayes theorem from a source URL.",
+    "content_set": [
+      {
+        "type": "url",
+        "title": "Bayes source URL",
+        "url": "https://example.com/bayes-theorem"
+      }
+    ],
+    "expected_warning": "url_metadata_only",
+    "expected_source_state": "metadata_only"
+  },
+  {
+    "name": "unseen technical domain transformer attention",
+    "learning_objective": "Teach transformer attention and KV cache for faster LLM inference.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Attention cache notes",
+        "text": "Transformer attention compares query vectors with key vectors to produce attention weights over value vectors. A KV cache stores past key and value tensors during autoregressive decoding, so the model does not recompute attention states for previous tokens. The tradeoff is extra memory usage for lower inference latency."
+      }
+    ],
+    "expected_concepts": ["transformer attention", "kv cache", "autoregressive decoding", "inference latency"],
+    "case_fragments": ["source-grounded transfer", "source citation", "changed example"],
+    "forbidden_concepts": ["if-none-match not", "responses without", "inequality enlightenment", "faster llm", "teach"],
+    "source_claim_fragments": ["transformer attention compares query vectors"]
+  },
+  {
+    "name": "adversarial technical domain linux containers",
+    "learning_objective": "Explain Linux containers, namespaces, cgroups, and container isolation.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Linux container note",
+        "text": "Linux containers isolate processes using namespaces for PID, network, mount, IPC, and users. Cgroups limit CPU, memory, and IO usage for a group of processes. Container images are built from read-only layers plus a writable container layer. Containers share the host kernel, so they are lighter than virtual machines but require careful isolation."
+      }
+    ],
+    "expected_concepts": ["linux containers", "namespaces", "cgroups", "container isolation"],
+    "case_fragments": ["source-grounded transfer", "source citation", "changed example"],
+    "forbidden_concepts": ["limit", "namespaces cgroups", "cgroups container", "explain linux"],
+    "source_claim_fragments": ["linux containers isolate processes", "cgroups limit cpu"]
+  },
+  {
+    "name": "heldout payments idempotency keys",
+    "learning_objective": "Teach backend engineers API idempotency keys, retries, and duplicate charge prevention.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Payments idempotency note",
+        "text": "An idempotency key lets a client retry a payment request without creating a duplicate charge. The server stores the key with the first result and returns the same result for later retries. A retry without an idempotency key can double charge a customer when the first response times out after the charge succeeded."
+      }
+    ],
+    "expected_concepts": ["idempotency keys", "retries", "duplicate charge"],
+    "case_fragments": ["source-grounded transfer", "source citation", "changed example"],
+    "forbidden_concepts": ["backend engineers", "engineers api"],
+    "source_claim_fragments": ["idempotency key lets a client retry", "double charge a customer"]
+  },
+  {
+    "name": "heldout backend domain http caching",
+    "learning_objective": "Teach backend engineers HTTP caching with ETag and Cache-Control for API responses.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "HTTP caching note",
+        "text": "HTTP caching uses Cache-Control directives such as max-age, no-store, private, and must-revalidate. An ETag is a validator representing a resource version. Clients send If-None-Match with a previous ETag and the server can return 304 Not Modified without the response body. Avoid caching personalized API responses without private or no-store because shared caches can leak user data."
+      }
+    ],
+    "expected_concepts": [["http caching", "caching"], "etag", "cache-control", ["304 not modified", "if-none-match"], "shared caches"],
+    "case_fragments": ["source-grounded transfer", "source citation", "changed example"],
+    "forbidden_concepts": ["api responses", "backend engineers", "responses without"],
+    "source_claim_fragments": ["http caching uses cache-control", "etag is a validator", "304 not modified"]
+  },
+  {
+    "name": "adversarial vague source warning",
+    "learning_objective": "Teach photosynthesis inputs and outputs.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Tiny note",
+        "text": "Plants make food."
+      }
+    ],
+    "expected_concepts": ["photosynthesis inputs", "outputs"],
+    "case_fragments": ["source-grounded transfer", "source citation", "changed example"],
+    "forbidden_concepts": ["plants food"],
+    "required_warnings": ["thin_content_set", "low_objective_source_overlap"],
+    "min_score": 75
+  },
+  {
+    "name": "adversarial irrelevant source warning",
+    "learning_objective": "Teach Bayes theorem for medical testing.",
+    "content_set": [
+      {
+        "type": "notes",
+        "title": "Recipe note",
+        "text": "Sourdough bread uses flour, water, salt, and a starter culture."
+      }
+    ],
+    "expected_concepts": ["bayes theorem", "base rate", "sensitivity"],
+    "case_fragments": ["p(disease | positive)", "base-rate trap", "sensitivity"],
+    "forbidden_concepts": ["sourdough bread", "starter culture"],
+    "required_warnings": ["thin_content_set", "low_objective_source_overlap"],
+    "min_score": 75
+  }
+]

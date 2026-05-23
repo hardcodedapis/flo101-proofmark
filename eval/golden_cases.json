@@ -1,0 +1,33 @@
+[
+  {
+    "name": "strong product brief",
+    "artifact_file": "examples/strong_artifact.txt",
+    "artifact_type": "brief",
+    "learner_goal": "Demonstrate product judgment by designing a reliable AI workflow for skill evaluation.",
+    "output_goal": "A concrete artifact that can be reviewed as proof-of-work.",
+    "min_score": 72,
+    "expected_confidence": ["medium", "high"],
+    "must_include_gap_fragment": "tradeoff"
+  },
+  {
+    "name": "weak vague artifact",
+    "artifact_file": "examples/weak_artifact.txt",
+    "artifact_type": "brief",
+    "learner_goal": "Design a reliable AI workflow for skill evaluation.",
+    "output_goal": "A concrete artifact that can be reviewed as proof-of-work.",
+    "max_score": 62,
+    "expected_confidence": ["low", "medium"],
+    "must_include_gap_fragment": "evidence"
+  },
+  {
+    "name": "code artifact",
+    "artifact_file": "examples/code_artifact.py",
+    "artifact_type": "code",
+    "learner_goal": "Write maintainable Python code with tests and edge-case handling.",
+    "output_goal": "Code that can be inspected and tested.",
+    "min_score": 65,
+    "expected_confidence": ["medium", "high"],
+    "must_include_gap_fragment": "tradeoff"
+  }
+]
+
