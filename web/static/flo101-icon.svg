@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <style>
+    g { stroke: #1a1a1a; }
+    @media (prefers-color-scheme: dark) {
+      g { stroke: #fafafa; }
+    }
+  </style>
+  <!--
+    flo101 favicon. Same italic script "ƒ" as /brand/flo-f.svg, with
+    light/dark stroke colors baked in so the browser tab icon flips
+    with system theme.
+  -->
+  <g fill="none" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 340 135
+             C 340 90, 285 70, 248 100
+             C 224 120, 218 152, 218 184
+             L 196 360
+             C 190 402, 165 422, 128 408"/>
+    <path d="M 144 244 L 308 244"/>
+  </g>
+</svg>

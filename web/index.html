@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ProofLoop Track B</title>
+    <link rel="icon" type="image/svg+xml" href="/static/flo101-icon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    >
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.css"
+      integrity="sha384-UA8juhPf75SzzAMA/4fo3yOU7sBJ0om7SCD2GHq0fZqZco6tr1UCV7nUbk9J90JM"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="/static/layout.css?v=track-b-upload-v14">
+    <link rel="stylesheet" href="/static/components.css?v=track-b-upload-v14">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-lockup" href="https://flo101.com/" target="_blank" rel="noopener noreferrer" aria-label="flo101 website">
+        <img src="/static/flo101-logo.png" alt="flo101">
+      </a>
+      <div class="header-status">
+        <span>Content curator + dynamic case builder</span>
+        <strong id="appStatus">ready</strong>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section id="inputHero" class="hero">
+        <p class="kicker">Required input: learning objective + small content set</p>
+        <h1>Turn source material into a staged learning path.</h1>
+        <p>
+          Add URLs, PDFs, notes, and transcript segments. The system builds the first lesson, shows source media,
+          places notes underneath, checks understanding, repairs weak spots visually, and schedules revision from learner evidence.
+        </p>
+      </section>
+
+      <section id="inputScreen" class="builder-grid">
+        <form id="planForm" class="control-panel">
+          <div class="panel-heading">
+            <p class="kicker">Input contract</p>
+            <h2>Objective and content</h2>
+            <p>Profile data is optional. If it is missing, the system uses embedded checks to infer it.</p>
+          </div>
+
+          <label>
+            Learning objective
+            <textarea id="objectiveInput" rows="3" required></textarea>
+          </label>
+
+          <div class="source-grid">
+            <label>
+              Source URLs
+              <textarea id="urlInput" rows="5" placeholder="https://example.com/lesson&#10;https://example.com/notes"></textarea>
+            </label>
+
+            <label>
+              Docs / notes excerpts
+              <textarea id="notesInput" rows="7"></textarea>
+            </label>
+          </div>
+
+          <label>
+            Optional transcript fallback
+            <textarea id="transcriptInput" rows="5" placeholder="Only paste this if you already have it. Gemini can analyze supported video inputs and return useful timestamps itself."></textarea>
+          </label>
+
+          <label class="file-input-shell">
+            Upload docs / notes / PDFs
+            <input
+              id="fileInput"
+              type="file"
+              multiple
+              accept=".pdf,.md,.markdown,.txt,.text,.notes,.tex,.latex,application/pdf,text/plain,text/markdown,text/x-tex"
+            >
+            <small>Markdown, text, TeX, and text-based PDFs. LaTeX delimiters are preserved for math rendering.</small>
+          </label>
+          <div id="fileList" class="file-list">No files selected</div>
+
+          <p class="demo-config-note">
+            Live AI providers are configured on the local backend with restricted low-balance demo keys for product demonstration.
+          </p>
+
+          <div class="form-row">
+            <label>
+              Session time budget, minutes
+              <input id="timeBudgetInput" type="number" min="10" max="90" value="28">
+            </label>
+            <label class="check-label">
+              <input id="includeEvidence" type="checkbox">
+              <span>Use sample first-attempt answers</span>
+            </label>
+          </div>
+
+          <div id="errorState" class="error-state hidden"></div>
+
+          <div class="button-row">
+            <button type="submit">Build learning bundle</button>
+            <button type="button" class="ghost-button" id="sourceSuggestButton">Find source links</button>
+            <button type="button" class="ghost-button" id="samplePhysicsButton">Physics diagram seed</button>
+            <button type="button" class="ghost-button" id="sampleChemistryButton">Chemistry seed</button>
+            <button type="button" class="ghost-button" id="sampleEvidenceButton">Evidence sample</button>
+          </div>
+          <div id="sourceFinder" class="source-finder hidden"></div>
+        </form>
+
+        <aside class="explain-panel">
+          <p class="kicker">Learner output</p>
+          <ol>
+            <li>Embedded videos and source links for the concept.</li>
+            <li>Notes directly under the lesson media.</li>
+            <li>Checkpoint questions that collect evidence while teaching.</li>
+            <li>Mind map, flowchart, memory cards, and formula reminders after the checkpoint.</li>
+            <li>Final dynamic case plus a learner-specific revision loop.</li>
+          </ol>
+        </aside>
+      </section>
+
+      <section id="resultShell" class="result-shell hidden">
+        <div class="lesson-topbar">
+          <button type="button" class="ghost-button small" id="backToInputButton">Back to inputs</button>
+          <div class="lesson-status">
+            <span id="moduleStepLabel">Module</span>
+            <strong id="moduleTitle">Lesson</strong>
+          </div>
+          <div class="module-actions">
+            <button type="button" class="ghost-button small" id="demoAnswerButton">Demo answers</button>
+            <button type="button" class="ghost-button small" id="prevModuleButton">Previous</button>
+            <button type="button" class="small" id="nextModuleButton">Next</button>
+          </div>
+        </div>
+
+        <div id="moduleRail" class="module-rail" aria-label="Lesson modules"></div>
+        <article id="moduleBody" class="module-body"></article>
+
+        <details class="debug-drawer">
+          <summary>Technical trace</summary>
+          <div class="debug-grid">
+            <section>
+              <h3>Chosen sources and chunks</h3>
+              <div id="sourceRationale" class="stack"></div>
+              <div id="ragChunks" class="stack"></div>
+            </section>
+            <section>
+              <div class="block-title-row">
+                <h3>LLM generation packet</h3>
+                <button type="button" class="ghost-button small" id="copyJsonButton">Copy JSON</button>
+              </div>
+              <pre id="llmPacket"></pre>
+              <h3>Model generation result</h3>
+              <div id="modelGeneration" class="stack"></div>
+            </section>
+          </div>
+        </details>
+      </section>
+    </main>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/katex.min.js" integrity="sha384-Tt7wBxLKwSzFVRET4O4U9H6v8MNaQ/CjN2FMP4xFm0ErrFu6aNqoonRVW5W40iGI" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.45/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"></script>
+    <script src="/static/api.js?v=track-b-upload-v14"></script>
+    <script src="/static/renderSources.js?v=track-b-upload-v14"></script>
+    <script src="/static/renderLesson.js?v=track-b-upload-v14"></script>
+    <script src="/static/adaptiveEvents.js?v=track-b-upload-v14"></script>
+    <script src="/static/app.js?v=track-b-upload-v14"></script>
+  </body>
+</html>
