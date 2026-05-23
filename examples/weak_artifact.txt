@@ -1,0 +1,2 @@
+I made an AI learning tool. It gives feedback and tells the learner what to do next. It should be useful for people trying to improve.
+

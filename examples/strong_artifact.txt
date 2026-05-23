@@ -1,0 +1,11 @@
+Goal: demonstrate product judgment by designing a reliable AI workflow for skill evaluation.
+
+I built a proof-of-work evaluator for learner artifacts because flo101 needs evidence that a learner can apply a skill, not just read content. The workflow takes a learner goal, expected output, artifact type, and artifact text. It evaluates the submission against a rubric covering goal fit, reasoning and evidence, execution detail, reflection and tradeoffs, and next-step readiness.
+
+The output includes a weighted score, dimension-specific feedback, missing gaps, and the next best improvement step. A reviewer can inspect the evidence observed and the evidence missing. For example, a learner who submits a product brief must show the target user, problem, constraints, tradeoff, and acceptance criteria.
+
+I chose GPT-5.5 pro with xhigh reasoning as the primary evaluator because proof-of-work judgment needs strong reasoning. The app asks the model for structured feedback, then repairs the response against the rubric schema. If the provider fails or returns malformed JSON, the deterministic evaluator is used as a fallback.
+
+Failure cases handled: empty artifacts are rejected, unsupported artifact types return an actionable error, oversized artifacts are truncated with a warning, short artifacts reduce confidence, identical revision comparisons are rejected, and provider failures trigger fallback evaluation.
+
+I tested the evaluator with strong and weak sample artifacts. The strong sample should score higher, contain fewer missing gaps, and produce a specific next step. The weak sample should ask for more evidence and concrete verification criteria. The proof map links each rubric score to visible evidence, missing proof, and a reviewer question. The revision comparison flow measures whether a learner actually improved after feedback. The main tradeoff is cost and latency versus judgment quality; I choose quality while keeping local fallback as a reliability floor.
